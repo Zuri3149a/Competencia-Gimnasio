@@ -33,3 +33,15 @@ Sistema integral para la administración de socios, planes de membresía y contr
 2. Levantar la base de datos: `docker-compose up -d`.
 3. Ejecutar el Backend: `cd backend/GymApi && dotnet run`.
 4. Ejecutar el Frontend: `cd frontend/gym-app && npm run dev`.
+
+##  Notas de Solución de Problemas
+
+### Error: `relation "membresias" does not exist`
+Este error ocurre si la base de datos no se inicializó correctamente. Los pasos para solucionarlo son:
+1. Asegurarse de que el `docker-compose.yml` mapee los archivos `init_db.sql` y `seed_data.sql`.
+2. Si la base de datos ya está creada pero vacía, se pueden ejecutar los scripts manualmente:
+   ```bash
+   docker exec -i gym_postgres psql -U postgres -d gym_db < init_db.sql
+   docker exec -i gym_postgres psql -U postgres -d gym_db < seed_data.sql
+   ```
+3. Reiniciar el Backend:`cd backend/GymApi && dotnet run`.

@@ -16,15 +16,17 @@ namespace GymApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<object>>> Get()
         {
+            // Usamos los nuevos nombres de navegación: Usuario y Membresia
             return await _context.SuscripcionesMembresia
-                .Include(s => s.IdUsuarioNavigation)
-                .Include(s => s.IdMembresiaNavigation)
+                .Include(s => s.Usuario)   // Antes: IdUsuarioNavigation
+                .Include(s => s.Membresia) // Antes: IdMembresiaNavigation
                 .Select(s => new {
                     s.IdSuscripcion,
                     s.IdUsuario,
-                    NombreUsuario = s.IdUsuarioNavigation.NombreCompleto,
+                    // Usamos el signo "?" para evitar errores si el objeto es nulo
+                    NombreUsuario = s.Usuario != null ? s.Usuario.NombreCompleto : "Sin Nombre",
                     s.IdMembresia,
-                    NombrePlan = s.IdMembresiaNavigation.Nombre,
+                    NombrePlan = s.Membresia != null ? s.Membresia.Nombre : "Sin Plan",
                     s.FechaInicio,
                     s.FechaFin,
                     s.Estado
@@ -35,9 +37,16 @@ namespace GymApi.Controllers
         [HttpPost]
         public async Task<ActionResult<SuscripcionesMembresium>> Post(SuscripcionesMembresium suscripcion)
         {
-            _context.SuscripcionesMembresia.Add(suscripcion);
-            await _context.SaveChangesAsync();
-            return Ok(suscripcion);
+            try 
+            {
+                _context.SuscripcionesMembresia.Add(suscripcion);
+                await _context.SaveChangesAsync();
+                return Ok(suscripcion);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error al guardar suscripción: {ex.Message}");
+            }
         }
 
         [HttpDelete("{id}")]
@@ -45,6 +54,7 @@ namespace GymApi.Controllers
         {
             var suscripcion = await _context.SuscripcionesMembresia.FindAsync(id);
             if (suscripcion == null) return NotFound();
+            
             _context.SuscripcionesMembresia.Remove(suscripcion);
             await _context.SaveChangesAsync();
             return NoContent();

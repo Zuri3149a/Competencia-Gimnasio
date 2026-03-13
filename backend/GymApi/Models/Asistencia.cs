@@ -1,15 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GymApi.Models;
 
+[Table("asistencias")] // Mapeo exacto a la tabla
 public partial class Asistencia
 {
+    [Column("id_asistencia")]
     public int IdAsistencia { get; set; }
 
+    [Column("id_usuario")]
     public int IdUsuario { get; set; }
 
-    public DateTime? FechaHora { get; set; }
+    [Column("fecha_hora")]
+    public DateTime FechaHora { get; set; } = DateTime.Now;
 
-    public virtual Usuario IdUsuarioNavigation { get; set; } = null!;
+    // Propiedad de navegación para traer el nombre del usuario en los GET
+    [ForeignKey("IdUsuario")]
+    public virtual Usuario? Usuario { get; set; }
 }

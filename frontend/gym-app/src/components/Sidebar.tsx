@@ -1,14 +1,16 @@
-import { Users, Dumbbell, Calendar, CreditCard, LayoutDashboard, UserSquare2, LogOut } from 'lucide-react';
+import { Users, Dumbbell, Calendar, CreditCard, LayoutDashboard, UserSquare2, LogOut, UserCheck, ReceiptIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const menuItems = [
   { icon: LayoutDashboard, label: 'Dashboard', path: '/' },
+  { icon: UserCheck, label: 'Asistencias', path: '/asistencias' },
   { icon: Users, label: 'Socios', path: '/usuarios' },
   { icon: CreditCard, label: 'Membresías', path: '/membresias' },
   { icon: UserSquare2, label: 'Entrenadores', path: '/entrenadores' },
   { icon: Calendar, label: 'Clases', path: '/clases' },
   { icon: Dumbbell, label: 'Equipos', path: '/equipos' },
   { icon: CreditCard, label: 'Suscripciones', path: '/suscripciones' },
+  { icon:ReceiptIcon, label: 'Comprobantes', path: '/comprobantes' },
 ];
 
 export const Sidebar = ({ onLogout }: { onLogout: () => void }) => {

@@ -9,6 +9,8 @@ import { Equipos } from './pages/Equipos';
 import { Suscripciones } from './pages/Suscripciones';
 import { Clases } from './pages/Clases';
 import { Dashboard } from './pages/Dashboard';
+import { Asistencias } from './pages/Asistencias';
+import { Comprobantes } from './pages/Comprobantes';
 // ... (tus otros imports)
 
 function App() {
@@ -49,7 +51,8 @@ function App() {
             <Route path="/equipos" element={<Equipos />} />
             <Route path="/suscripciones" element={<Suscripciones />} />
             <Route path="/clases" element={<Clases />} />
-
+            <Route path="/asistencias" element={<Asistencias />} />
+            <Route path="/comprobantes" element={<Comprobantes />} />
             {/* BUENA PRÁCTICA: Redirigir cualquier ruta desconocida al Dashboard */}
             <Route path="*" element={<Navigate to="/" replace />} />
             
