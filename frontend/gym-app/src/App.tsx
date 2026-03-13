@@ -28,7 +28,7 @@ function App() {
   return (
     <Router>
       <div className="flex bg-slate-50 min-h-screen">
-        <Sidebar />
+        <Sidebar onLogout={handleLogout} />
         <main className="flex-1 ml-64">
           {/* Botón de cerrar sesión rápido arriba a la derecha */}
           <button onClick={handleLogout} className="absolute top-4 right-8 text-slate-400 hover:text-red-500 font-medium text-sm">

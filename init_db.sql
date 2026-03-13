@@ -123,3 +123,6 @@ CREATE TABLE horarios_personal (
         (id_entrenador IS NULL AND id_ayudante IS NOT NULL)
     )
 );
+-- ... el resto de tu código ...
+ALTER TABLE membresias ADD COLUMN precio DECIMAL(10,2) NOT NULL DEFAULT 0;
+ALTER TABLE membresias ADD COLUMN duracion_dias INT NOT NULL DEFAULT 30;
