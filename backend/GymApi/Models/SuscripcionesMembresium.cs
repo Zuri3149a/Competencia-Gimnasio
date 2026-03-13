@@ -17,7 +17,7 @@ public partial class SuscripcionesMembresium
 
     public string? Estado { get; set; }
 
-    public virtual Membresia IdMembresiaNavigation { get; set; } = null!;
+    public virtual Membresia? IdMembresiaNavigation { get; set; }
 
-    public virtual Usuario IdUsuarioNavigation { get; set; } = null!;
+    public virtual Usuario? IdUsuarioNavigation { get; set; }
 }

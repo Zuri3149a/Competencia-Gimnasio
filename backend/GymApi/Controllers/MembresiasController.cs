@@ -36,5 +36,27 @@ namespace GymApi.Controllers
 
             return membresia;
         }
+        // PUT: api/Membresias/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutMembresia(int id, Membresia membresia)
+        {
+            if (id != membresia.IdMembresia) return BadRequest();
+
+            _context.Entry(membresia).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
+
+        // DELETE: api/Membresias/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteMembresia(int id)
+        {
+            var membresia = await _context.Membresias.FindAsync(id);
+            if (membresia == null) return NotFound();
+
+            _context.Membresias.Remove(membresia);
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
     }
 }

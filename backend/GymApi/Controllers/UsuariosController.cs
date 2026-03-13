@@ -47,5 +47,44 @@ namespace GymApi.Controllers
 
             return CreatedAtAction(nameof(GetUsuarios), new { id = usuario.IdUsuario }, usuario);
         }
+        // PUT: api/Usuarios/5 (Actualizar socio)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutUsuario(int id, Usuario usuario)
+        {
+            if (id != usuario.IdUsuario)
+            {
+                return BadRequest("El ID no coincide.");
+            }
+
+            _context.Entry(usuario).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!_context.Usuarios.Any(e => e.IdUsuario == id)) return NotFound();
+                else throw;
+            }
+
+            return NoContent();
+        }
+
+        // DELETE: api/Usuarios/5 (Eliminar socio)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteUsuario(int id)
+        {
+            var usuario = await _context.Usuarios.FindAsync(id);
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+
+            _context.Usuarios.Remove(usuario);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }        
     }
 }
