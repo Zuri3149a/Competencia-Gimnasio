@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Receipt, DollarSign, Calendar, Search, Download } from 'lucide-react';
+import { Receipt, DollarSign, Search, Download } from 'lucide-react';
 
 export const Comprobantes = () => {
   const [comprobantes, setComprobantes] = useState<any[]>([]);
