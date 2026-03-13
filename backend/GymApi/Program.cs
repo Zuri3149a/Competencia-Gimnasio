@@ -1,8 +1,18 @@
+using Microsoft.EntityFrameworkCore;
+using GymApi.Data; // Importamos la carpeta donde está tu DbContext
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+// ==========================================
+// 1. AQUÍ AGREGAMOS LA CONEXIÓN A POSTGRESQL
+// ==========================================
+builder.Services.AddDbContext<GymDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 
 var app = builder.Build();
 
