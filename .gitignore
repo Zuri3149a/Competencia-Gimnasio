@@ -1,0 +1,71 @@
+# =========================
+# BACKEND: C# / .NET
+# =========================
+# Ignorar carpetas de compilación
+[Bb]in/
+[Oo]bj/
+
+# Archivos de Visual Studio / IDEs
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Configuraciones locales (opcional, por si pones cadenas de conexión reales aquí)
+appsettings.Development.json
+
+# =========================
+# FRONTEND: React / TypeScript
+# =========================
+# Dependencias de Node (¡Muy pesado, nunca se sube a Git!)
+node_modules/
+
+# Carpetas de compilación de producción
+build/
+dist/
+out/
+
+# Logs de errores de gestores de paquetes
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Caché
+.eslintcache
+.tsbuildinfo
+
+# =========================
+# DOCKER Y POSTGRESQL
+# =========================
+# Si usas Docker para PostgreSQL, probablemente guardes los datos en una carpeta local. 
+# ¡No subas los datos de la base de datos al repositorio!
+pgdata/
+db-data/
+data/
+
+# =========================
+# VARIABLES DE ENTORNO Y SECRETOS (¡CRÍTICO!)
+# =========================
+# Nunca subas tus contraseñas, tokens o cadenas de conexión a GitHub
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+docker-compose.override.yml
+
+# =========================
+# SISTEMA OPERATIVO Y OTROS IDEs
+# =========================
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# macOS
+.DS_Store
+
+# VS Code / JetBrains (Opcional, a veces los equipos deciden compartir .vscode)
+.vscode/
+.idea/
